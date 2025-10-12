@@ -1,0 +1,125 @@
+<div class="service-direction-container">
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="page-title">Gestion des Services et Directions</h1>
+            <button class="btn btn-primary btn-create" (click)="openCreateModal()" [disabled]="loading">
+                Nouveau Service
+            </button>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <form [formGroup]="searchForm" class="search-form">
+            <div class="search-input-group">
+                <input type="text" formControlName="query" placeholder="Rechercher un service..." class="search-input" />
+            </div>
+        </form>
+    </div>
+
+    <div class="loading-overlay" *ngIf="loading">
+        <div class="spinner"></div>
+        <p>Chargement en cours...</p>
+    </div>
+
+    <table class="services-table">
+        <thead>
+        <tr>
+            <th (click)="onSortChange('nom')">Nom</th>
+            <th (click)="onSortChange('code')">Code</th>
+            <th>Responsable</th>
+            <th (click)="onSortChange('actif')">Statut</th>
+            <th class="actions-column">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let service of pagedServices.content" [class.inactive]="!service.actif">
+            <td>{{ service.nom }}</td>
+            <td>{{ service.code }}</td>
+            <td>{{ getResponsableName(service.responsable) }}</td>
+            <td>
+          <span class="status-badge" [class.active]="service.actif" [class.inactive]="!service.actif">
+            {{ service.actif ? 'Actif' : 'Inactif' }}
+          </span>
+            </td>
+            <td class="actions-cell">
+                <button class="btn btn-sm btn-info" (click)="openViewModal(service)" title="Voir">
+                    <i class="icon-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning" (click)="openEditModal(service)" title="Modifier">
+                    <i class="icon-edit"></i>
+                </button>
+                <button
+                        class="btn btn-sm"
+                        [class.btn-success]="!service.actif"
+                        [class.btn-secondary]="service.actif"
+                        (click)="toggleServiceStatus(service)"
+                        [title]="service.actif ? 'Désactiver' : 'Activer'">
+                    <i class="icon-power"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteService(service)" title="Supprimer">
+                    <i class="icon-trash"></i>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="pagedServices.empty">
+            <td colspan="5">Aucun service trouvé</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+        <div class="modal-container" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h2>{{ modalTitle }}</h2>
+                <button class="btn btn-close" (click)="closeModal()">×</button>
+            </div>
+
+            <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input formControlName="nom" class="form-control" placeholder="Nom du service" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Code</label>
+                        <input formControlName="code" class="form-control" placeholder="Code" />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea formControlName="description" rows="3" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Responsable</label>
+                        <select formControlName="responsable" class="form-control">
+                            <option value="">-- Sélectionner --</option>
+                            <option *ngFor="let user of responsables" [value]="user.id">
+                                {{ user.firstName }} {{ user.lastName }} ({{ user.email }})
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Actif</label>
+                        <input type="checkbox" formControlName="actif" />
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal-footer" *ngIf="modalMode !== 'view'">
+                <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+                <button class="btn btn-primary" (click)="onSubmit()" [disabled]="loading">
+                    {{ modalMode === 'create' ? 'Créer' : 'Modifier' }}
+                </button>
+            </div>
+
+            <div class="modal-footer" *ngIf="modalMode === 'view'">
+                <button class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+                <button class="btn btn-primary" (click)="openEditModal(currentService!)">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>

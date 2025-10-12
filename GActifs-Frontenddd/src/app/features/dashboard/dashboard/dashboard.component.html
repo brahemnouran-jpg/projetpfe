@@ -1,0 +1,111 @@
+<!-- Sidebar Overlay -->
+<div #overlay class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-left">
+        <button #menuToggle class="menu-toggle">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="header-title">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
+
+    <div class="header-right">
+        <div class="header-actions">
+            <div class="user-menu">
+                <button class="logout-btn" (click)="logout()" title="Déconnexion">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span class="logout-text">Déconnexion</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Layout -->
+<div class="main-layout">
+    <!-- Sidebar -->
+    <aside #sidebar class="sidebar" [class.open]="sidebarOpen">
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+
+                <!-- Agent : Actifs -->
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN','AGENT','RESPONSABLE',])">
+                    <a routerLink="/dashboard/assetmanagement" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-hdd-network nav-icon"></i>
+                        <span class="nav-text">Gestion des actifs</span>
+                    </a>
+                </li>
+                <li class="nav-item"  *ngIf="hasAccess(['ADMIN'])">
+                    <a routerLink="/dashboard/aservicedirection" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-people nav-icon"></i>
+                        <span class="nav-text">Gestion des Directions</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN'])">
+                    <a routerLink="/dashboard/users" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-person-lines-fill nav-icon"></i>
+                        <span class="nav-text">Gestion Utilisateurs</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN'])">
+                    <a routerLink="/dashboard/categories" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-tags nav-icon"></i>
+                        <span class="nav-text">Gestion Catégories</span>
+                    </a>
+                </li>
+                <!-- Responsable / Agent / Admin : Réclamations -->
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN','RESPONSABLE','AGENT'])">
+                    <a routerLink="/dashboard/reclamations" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-exclamation-triangle nav-icon"></i>
+                        <span class="nav-text">Réclamations</span>
+                    </a>
+                </li>
+
+                <!-- Responsable / Technicien / Admin : Interventions -->
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN','RESPONSABLE','TECHNICIEN'])">
+                    <a routerLink="/dashboard/interventions" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-tools nav-icon"></i>
+                        <span class="nav-text">Gestion Interventions</span>
+                    </a>
+                </li>
+
+                <!-- Technicien / Admin : Calendrier -->
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN','TECHNICIEN'])">
+                    <a routerLink="/dashboard/Calendar" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-calendar nav-icon"></i>
+                        <span class="nav-text">Calendrier</span>
+                    </a>
+                </li>
+
+                <!-- Admin uniquement -->
+
+
+                <li class="nav-item" *ngIf="hasAccess(['ADMIN','RESPONSABLE',])">
+                    <a routerLink="/dashboard/historique" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-clock-history nav-icon"></i>
+                        <span class="nav-text">Historique</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="hasAccess(['TECHNICIEN'])">
+                    <a routerLink="/dashboard/notifications" class="nav-link" routerLinkActive="active">
+                        <i class="bi bi-bell nav-icon"></i>
+                        <span class="nav-text">Notifications</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>
