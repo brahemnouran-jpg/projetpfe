@@ -8,7 +8,7 @@
 
 .calendar-header {
         margin-bottom: 30px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e5d32 0%, #1e5d32 100%);
         padding: 30px;
         border-radius: 12px;
         color: white;
@@ -135,7 +135,7 @@
         .weekday {
                 text-align: center;
                 font-weight: 600;
-                color: #667eea;
+                color: #1e5d32;
                 padding: 10px;
                 font-size: 14px;
         }
@@ -160,7 +160,7 @@
                 overflow: hidden;
 
                 &:hover {
-                        border-color: #667eea;
+                        border-color: #1e5d32;
                         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
                 }
 
@@ -258,7 +258,7 @@
                         width: 40px;
                         height: 40px;
                         border: 4px solid #e5e7eb;
-                        border-top-color: #667eea;
+                        border-top-color: #1e5d32;
                         border-radius: 50%;
                         animation: spin 0.8s linear infinite;
                         margin: 0 auto 15px;
@@ -348,7 +348,7 @@
                                         color: #555;
 
                                         svg {
-                                                color: #667eea;
+                                                color: #1e5d32;
                                                 flex-shrink: 0;
                                         }
 

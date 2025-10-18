@@ -79,8 +79,8 @@
       }
     }
 
-    &.total .stat-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    &.nouvelles .stat-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    &.total .stat-icon { background: linear-gradient(135deg, #667eea 0%, #1e5d32 100%); }
+    &.nouvelles .stat-icon { background: linear-gradient(135deg, #667eea 0%, #1e5d32 100%); }
     &.en-cours .stat-icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
     &.resolues .stat-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
     &.retard .stat-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
@@ -314,8 +314,8 @@
     color: white;
 
     &.badge-type {
-      &.badge-technique { background: #3b82f6; }
-      &.badge-fonctionnel { background: #8b5cf6; }
+      &.badge-technique { background: #1e5d32; }
+      &.badge-fonctionnel { background: #1e5d32; }
       &.badge-performance { background: #f59e0b; }
       &.badge-securite { background: #ef4444; }
       &.badge-acces { background: #10b981; }
@@ -458,9 +458,9 @@
       }
 
       &.active {
-        background: #667eea;
+        background: #1e5d32;
         color: white;
-        border-color: #667eea;
+        border-color: #1e5d32;
       }
 
       &:disabled {
@@ -485,7 +485,7 @@
     border: none;
 
     &.btn-primary {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #1e5d32 0%, #1e5d32 100%);
       color: white;
 
       &:hover:not(:disabled) {

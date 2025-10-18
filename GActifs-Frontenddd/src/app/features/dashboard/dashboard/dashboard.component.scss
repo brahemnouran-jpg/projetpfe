@@ -1,9 +1,9 @@
 // Variables de couleurs pour le thème mauve (intégrant les styles de service-direction)
-$primary-purple: #7c3aed;
-$secondary-purple: #8b5cf6;
+$primary-purple: #1e5d32;
+$secondary-purple: #1e5d32;
 $light-purple: #a78bfa;
-$dark-purple: #5b21b6;
-$very-dark-purple: #4c1d95;
+$dark-purple: #1e5d32;
+$very-dark-purple: #1e5d32;
 
 // Variables compatibles avec service-direction
 $primary-color: $primary-purple;
@@ -15,23 +15,23 @@ $info-color: #0ea5e9;
 
 $background-light: #faf5ff;
 $background-color: $background-light;
-$background-dark: #1e1b31;
+$background-dark: #059669;
 $card-background: #ffffff;
-$sidebar-background: #2d2548;
+$sidebar-background: #1e5d32;
 $header-background: #ffffff;
 
-$text-primary: #1e293b;
+$text-primary: #059669;
 $text-secondary: #64748b;
 $text-light: #ffffff;
 $text-muted: #94a3b8;
 
 $border-color: #e2e8f0;
 $border-radius: 12px;
-$shadow-light: rgba(124, 58, 237, 0.1);
-$shadow-medium: rgba(124, 58, 237, 0.15);
-$shadow-heavy: rgba(124, 58, 237, 0.25);
+$shadow-light: rgb(5, 150, 105);
+$shadow-medium: rgb(30, 93, 50);
+$shadow-heavy: rgb(30, 93, 50);
 $box-shadow: 0 4px 20px $shadow-light;
-$box-shadow-lg: 0 10px 15px -3px rgba(124, 58, 237, 0.1), 0 4px 6px -2px rgba(124, 58, 237, 0.05);
+$box-shadow-lg: 0 10px 15px -3px rgba(124, 58, 237, 0.1), 0 4px 6px -2px rgb(30, 93, 50);
 
 $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
